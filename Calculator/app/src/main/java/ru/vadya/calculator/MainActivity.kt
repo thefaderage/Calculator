@@ -44,38 +44,34 @@ class MainActivity : AppCompatActivity() {
 
         binding.btnPlus.setOnClickListener{ setTextFields("+") }
 
-        binding.btnMultiple.setOnClickListener{ setTextFields("*") }
+        binding.btnMultiply.setOnClickListener{ setTextFields("*") }
 
-        binding.btnDiv.setOnClickListener{ setTextFields("/") }
+        binding.btnDivision.setOnClickListener{ setTextFields("/") }
 
-        binding.btnStr.setOnClickListener{ setTextFields("(") }
-
-        binding.btnEnd.setOnClickListener{ setTextFields(")") }
-
-        binding.btnClear.setOnClickListener {
-            binding.mathOp.text = ""
-            binding.resultText.text = ""
+        binding.btnAC.setOnClickListener {
+            binding.calculation.text = ""
+            binding.result.text = ""
         }
 
         binding.btnBack.setOnClickListener {
-            val str = binding.mathOp.text.toString()
+            val str = binding.calculation.text.toString()
             if (str.isNotEmpty())
-                binding.mathOp.text = str.substring(0, str.length - 1)
+                binding.calculation.text = str.substring(0, str.length - 1)
 
-            binding.resultText.text = ""
+            binding.result.text = ""
         }
 
         binding.btnEqual.setOnClickListener {
             try {
 
-                val expression = ExpressionBuilder(binding.mathOp.text.toString()).build()
+                val expression = ExpressionBuilder(binding.calculation.text.toString()).build()
                 val result = expression.evaluate()
 
                 val longRes = result.toLong()
                 if (result == longRes.toDouble())
-                    binding.resultText.text = longRes.toString()
+                    binding.result.text = longRes.toString()
                 else
-                    binding.resultText.text = result.toString()
+                    binding.result.text = result.toString()
 
             } catch (e:Exception) {
                 Log.d("Ошибка", "сообщение: ${e.message}")
@@ -84,10 +80,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun setTextFields (str: String){
-        if (binding.resultText.text != ""){
-            binding.mathOp.text = binding.resultText.text
-            binding.resultText.text = ""
+        if (binding.result.text != ""){
+            binding.calculation.text = binding.result.text
+            binding.result.text = ""
         }
-        binding.mathOp.append(str)
+        binding.calculation.append(str)
     }
 }
