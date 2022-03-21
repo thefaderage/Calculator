@@ -1,4 +1,4 @@
-package ru.vadya.calculator
+package ru.vadya.calculator.screens
 
 import android.os.Bundle
 import android.util.Log
@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import net.objecthunter.exp4j.ExpressionBuilder
+import ru.vadya.calculator.R
 import ru.vadya.calculator.databinding.FragmentCalculatorBinding
 import java.lang.Exception
 
@@ -14,9 +15,22 @@ import java.lang.Exception
 class CalculatorFragment : Fragment(R.layout.fragment_calculator) {
     private lateinit var binding: FragmentCalculatorBinding
 
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        binding = FragmentCalculatorBinding.inflate(
+            inflater,
+            container,
+            false
+        )
+
+        return binding.root
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding = FragmentCalculatorBinding.bind(view)
 
         binding.btn0.setOnClickListener { setTextFields("0") }
 
@@ -79,6 +93,7 @@ class CalculatorFragment : Fragment(R.layout.fragment_calculator) {
         }
     }
 
+
     fun setTextFields (str: String){
         if (binding.result.text != ""){
             binding.calculation.text = binding.result.text
@@ -86,4 +101,8 @@ class CalculatorFragment : Fragment(R.layout.fragment_calculator) {
         }
         binding.calculation.append(str)
     }
+
 }
+
+
+
