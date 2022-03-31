@@ -9,6 +9,7 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import ru.vadya.calculator.R
 import ru.vadya.calculator.databinding.ActivityMainBinding
+import ru.vadya.calculator.databinding.FragmentMainBinding
 import ru.vadya.calculator.databinding.FragmentSplashBinding
 
 
@@ -17,21 +18,24 @@ class SplashFragment : Fragment(R.layout.fragment_splash) {
     private lateinit var binding: FragmentSplashBinding
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
+        inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-
+    ): View {
         binding = FragmentSplashBinding.inflate(inflater, container, false)
 
-        return binding.root}
+        return binding.root
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         view.postDelayed({
             findNavController().navigate(R.id.action_splashFragment_to_mainFragment)},
-            3000)
+            10000)
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
     }
 
 }

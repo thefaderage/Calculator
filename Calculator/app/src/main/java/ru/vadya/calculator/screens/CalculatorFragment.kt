@@ -94,7 +94,7 @@ class CalculatorFragment : Fragment(R.layout.fragment_calculator) {
     }
 
 
-    fun setTextFields (str: String){
+    private fun setTextFields (str: String){
         if (binding.result.text != ""){
             binding.calculation.text = binding.result.text
             binding.result.text = ""
